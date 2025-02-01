@@ -54,7 +54,7 @@
 <body>
     <h1>type the CAPITAL letter</h1>
     <div id="letter"></div>
-    <div id="counter">correct captial letters: 0</div>
+    <div id="counter"> CAPITAL letters: 0</div>
     <div id="error"></div>
     <div id="footer">created by dumbstuff12324</div>
 
@@ -83,13 +83,13 @@
                 const currentLetter = letterDiv.textContent;
                 if (event.key === currentLetter) {
                     correctCount++;
-                    counterDiv.textContent = `Aantal correcte hoofdletters: ${correctCount}`;
+                    counterDiv.textContent = `CAPITAL letters: ${correctCount}`;
                     showNewLetter();
                 }
                 shiftPressed = false;
             } else if (shiftPressed) {
                 correctCount = 0;
-                counterDiv.textContent = `Aantal correcte hoofdletters: ${correctCount}`;
+                counterDiv.textContent = `CAPITAL letters: ${correctCount}`;
                 errorDiv.textContent = 'Je hebt twee letters getypt terwijl je de Shift-toets ingedrukt hield. De teller is gereset.';
                 shiftPressed = false;
             }
