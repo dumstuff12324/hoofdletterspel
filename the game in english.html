@@ -85,13 +85,7 @@
                     correctCount++;
                     counterDiv.textContent = `CAPITAL letters: ${correctCount}`;
                     showNewLetter();
-                }
-                shiftPressed = false;
-            } else if (shiftPressed) {
-                correctCount = 0;
-                counterDiv.textContent = `CAPITAL letters: ${correctCount}`;
-                errorDiv.textContent = 'Je hebt twee letters getypt terwijl je de Shift-toets ingedrukt hield. De teller is gereset.';
-                shiftPressed = false;
+                
             }
         });
 
