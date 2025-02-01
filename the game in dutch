@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoofdletter Tellen</title>
+    <style>
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background-color: #0d0d0d;
+            color: #0000ff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #0000ff;
+        }
+        #letter {
+            font-size: 4em;
+            margin-top: 20px;
+            border: 2px solid #0000ff;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #1a1a1a;
+            text-shadow: 0 0 10px #0000ff;
+        }
+        #counter {
+            margin-top: 10px;
+            font-size: 1.5em;
+            text-shadow: 0 0 10px #0000ff;
+        }
+        #error {
+            color: #ff0066;
+            margin-top: 10px;
+            text-shadow: 0 0 10px #ff0066;
+        }
+        #footer {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 1em;
+            color: #0000ff;
+            text-shadow: 0 0 10px #0000ff;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Typ de Hoofdletter</h1>
+    <div id="letter"></div>
+    <div id="counter">Aantal correcte hoofdletters: 0</div>
+    <div id="error"></div>
+    <div id="footer">created by dumbstuff12324</div>
+
+    <script>
+        let correctCount = 0;
+        let shiftPressed = false;
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const letterDiv = document.getElementById('letter');
+        const counterDiv = document.getElementById('counter');
+        const errorDiv = document.getElementById('error');
+
+        function getRandomLetter() {
+            return letters[Math.floor(Math.random() * letters.length)];
+        }
+
+        function showNewLetter() {
+            const newLetter = getRandomLetter();
+            letterDiv.textContent = newLetter;
+            errorDiv.textContent = '';
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Shift') {
+                shiftPressed = true;
+            } else if (shiftPressed && event.key === event.key.toUpperCase() && event.key.match(/[A-Z]/)) {
+                const currentLetter = letterDiv.textContent;
+                if (event.key === currentLetter) {
+                    correctCount++;
+                    counterDiv.textContent = `Aantal correcte hoofdletters: ${correctCount}`;
+                    showNewLetter();
+                }
+                shiftPressed = false;
+            } else if (shiftPressed) {
+                correctCount = 0;
+                counterDiv.textContent = `Aantal correcte hoofdletters: ${correctCount}`;
+                errorDiv.textContent = 'Je hebt twee letters getypt terwijl je de Shift-toets ingedrukt hield. De teller is gereset.';
+                shiftPressed = false;
+            }
+        });
+
+        showNewLetter();
+    </script>
+</body>
+</html>
